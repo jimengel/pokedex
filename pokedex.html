@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <style>
+     .gridLi {
+	 display: block;
+	 width: 25%;
+	 float: left;
+     }
+//	/* allow room for 3 columns */
+//	ol
+//	{
+//	width: 75em;
+//	}  /* float & allow room for the widest item */
+//	ol li
+//	{
+//	float: left;
+//	width: 20em;
+//	}  /* stop the float */
+//	<br />
+//	{
+//	clear: left;
+//	}  /* separate the list from subsequent markup */
+//	div.wrapper
+//	{
+//	margin-bottom: 1em;
+//	}
+    </style>
+	<!-- <link rel="stylesheet" href="/css/simplest_vue.css"> -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div id="mainapp">
+	<center><img src="images/header-md.png"></center><hr>
+	<poke-header :results="this.results" :types="this.types" ></poke-header>
+	<poke-grid   :results="this.results" :type_value="this.typeValue" :the_search="this.theSearch" v-show="showIt === 'GRID'">></poke-grid>
+	<poke-list   :results="this.results" v-show="showIt === 'LIST'">></poke-list>
+	<poke-details :details="this.details" :results="this.results" v-show="showIt === 'DETAILS'">></poke-details>
+    </div>
+</body>
+
+
+</html>
+<script type="text/javascript" src="pokeDetails.js"></script>
+<script type="text/javascript" src="pokeList.js"></script>
+<script type="text/javascript" src="pokeGrid.js"></script>
+<script type="text/javascript" src="pokeHeader.js"></script>
+<script type="text/javascript" src="pokemon.js"></script>
