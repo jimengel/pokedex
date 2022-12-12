@@ -4,7 +4,7 @@ Vue.component('poke-grid', {
 	return {
 	}
     },
-    props: [ 'results', 'type_value', 'the_search' ],
+    props: [ 'results' ],
     methods: {
 	groupTypes: function( typeList ) {
 	    var types = ""
@@ -22,13 +22,7 @@ Vue.component('poke-grid', {
 	},
 	toggleFavorite: function ( event ) {
 	    try {
-		console.log( "THE ITEM1 ---" , event );
-		//index = event.path[0].id;
 		index = event.srcElement.id;
-		console.log( "THE Index1 ---" , index );
-		console.log( "POKEMON1 = %o", this.results[index]);
-		console.log( "POKEMON1 =", this.results[index].name);
-		console.log( "POKEMON1 =", this.results[index].isFavorite);
 		toggleFavorite( this.results[index] );
 		this.results[index].isFavorite = !this.results[index].isFavorite;
 	    }
@@ -38,15 +32,7 @@ Vue.component('poke-grid', {
 	},
 	showDetails: function( event ) {
 	    try {
-		console.log( "THE ITEM2 -----" , event );
-		//index = event.path[0].id;
 		index = event.srcElement.id;
-		console.log( "THE Index2 ---" , index );
-		console.log( "POKEMON2 = %o", this.results[index]);
-		console.log( "POKEMON2 =", this.results[index].name);
-		console.log( "POKEMON2 =", this.results[index].isFavorite);
-		
-//		this.results[index].isFavorite = !this.results[index].isFavorite;
 		getDetails( this.results[index] );
 	    }
 	    catch( error ) {
@@ -63,11 +49,11 @@ Vue.component('poke-grid', {
                      <li v-bind:class="{ gridLi: true }"  >
                        <div class="w3-card">  
                         <div class="w3-container">
-                         <img :src="theItem.image" height="100px" width="100px" class="w3-circle" :id="index" v-on:click="showDetails"></img>
+                         <img :src="theItem.image" height="100px" width="100px" class="w3-circle pointer" :id="index" v-on:click="showDetails"></img>
                          {{theItem.name}}
                          <div class="w3-container">
                            <p >{{ groupTypes( theItem.types) }}</p>
-                           <span class="w3-circle" :id="index" :style="showFav(theItem)" v-on:click="toggleFavorite" >&hearts;</span>
+                           <span class="w3-circle pointer" :id="index" :style="showFav(theItem)" v-on:click="toggleFavorite" >&hearts;</span>
                          </div>
                          </div>
                        </div>

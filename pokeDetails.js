@@ -13,7 +13,6 @@ Vue.component('poke-details', {
 		return ""
 	    }
 	    var types = ""
-	    console.log( "====== ", typeList)
 	    for (var i = 0; i < typeList.length; i++) {
 		types = types + typeList[i]  + ", ";
 	    }
@@ -31,7 +30,6 @@ Vue.component('poke-details', {
 	},
 	toggleFavorite: function ( event ) {
 	    try {
-		console.log( "THE ITEM1 ---" , event );
 		index = event.srcElement.id - 1;
 		toggleFavorite( this.results[index] );
 		this.results[index].isFavorite = !this.results[index].isFavorite;
@@ -44,7 +42,7 @@ Vue.component('poke-details', {
     },
 
     template: ` <div>
- 		  <button class="w3-button w3-round-large w3-red" onclick="mySimpleApp.$data.showIt = mySimpleApp.$data.savedView">Back</button>
+ 		  <button class="w3-button w3-round-large w3-red" onclick="pokeApp.$data.showIt = pokeApp.$data.savedView">Back</button>
 		  <h1><b>{{details.name}}</b></h1>
 		  <div class="w3-row">
 		    <div class="w3-col m5">
@@ -66,7 +64,7 @@ Vue.component('poke-details', {
 		    </div>
 		  </div>
 
-                  <span class="w3-circle" :id="details.number" :style="showFav(details)" v-on:click="toggleFavorite" >&hearts;</span>
+                  <span class="w3-circle pointer" :id="details.number" :style="showFav(details)" v-on:click="toggleFavorite" >&hearts;</span>
                   <audio id="pokeSound" :src="details.sound" preload="auto"></audio>
                   <button onclick="document.getElementById('pokeSound').play();">Play sound</button>
 

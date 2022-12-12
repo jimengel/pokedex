@@ -11,38 +11,31 @@ Vue.component('poke-header', {
     props: [ 'results', 'showit', 'types' ],
     methods: {
 	changeType: function( ) {
-	    console.log( this.typeValue )
-//	    if ( this.typeValue == 'All' ) {
-//		this.typeValue = undefined
-//	    }
-	    //this.theType == 'All'
-	    mySimpleApp.$data.typeValue = this.typeValue 
-	    console.log( "----type" , this.typeValue, "-", this.theSearch,  "-", this.getFavorite, "-")
-	    mySimpleApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
+	    pokeApp.$data.typeValue = this.typeValue 
+	    //console.log( "----type" , this.typeValue, "-", this.theSearch,  "-", this.getFavorite, "-")
+	    pokeApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
 	},
 	changeSearch: function( ) {
-	    console.log( this.typeSearch )
-	    console.log( "----search" , this.typeValue, this.theSearch, this.getFavorite)
-	    mySimpleApp.$data.theSearch = this.theSearch
-	    mySimpleApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
+	    //console.log( "----search" , this.typeValue, this.theSearch, this.getFavorite)
+	    pokeApp.$data.theSearch = this.theSearch
+	    pokeApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
 	},
 	changeView: function( ) {
 	    if ( this.theView == 'GRID' ) {
-		mySimpleApp.$data.showIt = 'GRID';
+		pokeApp.$data.showIt = 'GRID';
 	    } else {
-		mySimpleApp.$data.showIt = 'LIST';
+		pokeApp.$data.showIt = 'LIST';
 	    }
 	},
 	showAllFav: function( ) {
-	    console.log( this.theFavotite );
 	    if ( this.theFavorite == 'All' ) {
 		this.getFavorite = undefined;
 	    } else {
 		this.getFavorite = "true"
 	    }
-	    mySimpleApp.$data.theFavorite = this.getFavorite
-	    mySimpleApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
-	    console.log( "---ALL" , this.typeValue, this.theSearch, this.getFavorite)
+	    pokeApp.$data.theFavorite = this.getFavorite
+	    pokeApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
+	    //console.log( "---ALL" , this.typeValue, this.theSearch, this.getFavorite)
 	}
     },
     template: ` <div>
@@ -71,7 +64,7 @@ Vue.component('poke-header', {
 });
 
 
-  	    //<button class="w3-bar-item w3-button" onclick="mySimpleApp.$data.showIt = 'ALL'">All</button>
-            //<button class="w3-bar-item w3-button" onclick="mySimpleApp.$data.showIt = 'FAVORITE'">Favorites</button><br>
-	    //     <button class="w3-button w3-col m2" onclick="changeToList()">List View</button>
-	    //     <button class="w3-button w3-col m2" onclick="changeToGrid()">Grid View</button>
+//<button class="w3-bar-item w3-button" onclick="pokeApp.$data.showIt = 'ALL'">All</button>
+//<button class="w3-bar-item w3-button" onclick="pokeApp.$data.showIt = 'FAVORITE'">Favorites</button><br>
+//     <button class="w3-button w3-col m2" onclick="changeToList()">List View</button>
+//     <button class="w3-button w3-col m2" onclick="changeToGrid()">Grid View</button>
