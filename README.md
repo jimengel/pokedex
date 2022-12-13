@@ -12,7 +12,6 @@ The following was used to develop this web page
 The application is broken up into different views/files depending on what you are viewing.
 
 - If you are viewing the grid then code from pokeGrid.js is the main code base
-- If you are viewing the list then code from pokeList.js is the main code base
 - If you are viewing the details then code from pokeDetails.js is the main code base
 - pokeHeader.js has the header part of the webpage.
 - pokemon.js contains the code to start the vue app as well as reading/writing the api
