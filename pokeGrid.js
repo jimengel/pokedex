@@ -1,5 +1,5 @@
 
-Vue.component('poke-grid', {
+Vue.component('poke-grid-list', {
     data: function () {
 	return {
 	    pagePosition: 0,

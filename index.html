@@ -27,8 +27,7 @@
     <div id="mainapp">
 	<center><img src="images/header-md.png"></center><hr>
 	<poke-header :results="this.results" :types="this.types" ></poke-header>
-	<poke-grid   :results="this.results" :pageresults="this.pageResults" :count="this.count" :type_value="this.typeValue" :the_search="this.theSearch" v-show="showIt === 'LIST' || showIt === 'GRID'" ></poke-grid>
-	<!--    <poke-list   :results="this.results" :pageresults="this.pageResults" :count="this.count" v-show="showIt === 'LIST'">></poke-list> -->
+	<poke-grid-list   :results="this.results" :pageresults="this.pageResults" :count="this.count" :type_value="this.typeValue" :the_search="this.theSearch" :showit="this.showIt" v-show="showIt === 'LIST' || showIt === 'GRID'" ></poke-grid-list>
 	<poke-details :details="this.details" :results="this.results" v-show="showIt === 'DETAILS'">></poke-details>
     </div>
 </body>
