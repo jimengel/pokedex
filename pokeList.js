@@ -2,10 +2,11 @@
 Vue.component('poke-list', {
     data: function () {
 	return {
+	    pagePosition: 0,
+	    maxPageCount: 99
 	}
     },
-
-    props: [ 'results' ],
+    props: [ 'results', 'pageresults', 'count' ],
     methods: {
 	groupTypes: function( typeList ) {
 	    var types = ""
@@ -33,17 +34,62 @@ Vue.component('poke-list', {
 	},
 	showDetails: function( event ) {
 	    try {
-		index = event.srcElement.id;
+		var index = Number( event.srcElement.id );
+		index = index + (this.pagePosition * 20)
 		getDetails( this.results[index] );
 	    }
 	    catch( error ) {
 		console.log( error )
 	    }
+	},
+	numPages: function( theCount ) {
+	    count = Math.trunc( theCount / 20 )
+	    if ( theCount % 20 > 0 ) count++
+	    console.log( ">>>>>", count );
+	    this.maxPageCount = count;
+	    return count;
+	},
+	selectPage: function( pageNum ) {
+	    this.pagePosition = pokeApp.$data.pageResults;
+	    this.$forceUpdate
+	    if ( pageNum == -1000 ) {
+		this.pagePosition = this.pagePosition - 1;
+	    } else if ( pageNum == 1000 ) {
+		this.pagePosition = this.pagePosition + 1;
+	    } else { 
+		this.pagePosition = pageNum;
+	    }
+
+	    if ( this.pagePosition < 0 ) {
+		this.pagePosition = 0
+	    }
+	    if ( this.pagePosition > this.maxPageCount - 1 ) {
+		this.pagePosition = this.maxPageCount - 1
+	    }
+
+	    firstPage = this.pagePosition * 20;
+	    lastPage  = firstPage + 20
+	    pokeApp.$data.pageResults = pokeApp.$data.results.slice( firstPage, lastPage);
+	    return; 
+	},
+	highlightPage: function( thePage ) {
+	    var style = "";
+	    if ( thePage == this.pagePosition ) {
+		style = "background: green"; 
+	    }
+	    return style;
 	}
     },
     template: `<div>
+		 <div style="text-align: center;" class="w3-bar">
+		   <a href="#" v-on:click="selectPage( -1000 )" class="w3-button">&laquo;</a>
+                   <template v-for="(theItem, index) in numPages(this.count)" >
+		     <a href="#" v-on:click="selectPage( index )" :style="highlightPage( index )" class="w3-button">{{index}} </a>
+		   </template>
+		   <a href="#" v-on:click="selectPage( 1000 )" class="w3-button">&raquo;</a>
+		 </div>
                  <ol>
-                   <template v-for="(theItem, index) in this.results" >
+                   <template v-for="(theItem, index) in this.pageresults" >
                      <li>
                        <div class="w3-card">  
                          <img :src="theItem.image" height="100px" width="100px" class="w3-circle pointer" :id="index" v-on:click="showDetails"></img>

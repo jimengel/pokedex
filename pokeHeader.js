@@ -34,6 +34,9 @@ Vue.component('poke-header', {
 		this.getFavorite = "true"
 	    }
 	    pokeApp.$data.theFavorite = this.getFavorite
+	    pokeApp.$data.theSearch   = this.typeSearch
+	    pokeApp.$data.typeValue   = this.typeValue
+	    pokeApp.$data.pagePosition = 0;
 	    pokeApp.getInitialPokeData( this.typeValue, this.theSearch, this.getFavorite)
 	    //console.log( "---ALL" , this.typeValue, this.theSearch, this.getFavorite)
 	}

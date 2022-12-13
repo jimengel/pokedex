@@ -30,9 +30,8 @@ Vue.component('poke-details', {
 	},
 	toggleFavorite: function ( event ) {
 	    try {
-		index = event.srcElement.id - 1;
-		toggleFavorite( this.results[index] );
-		this.results[index].isFavorite = !this.results[index].isFavorite;
+		index = Number(event.srcElement.id) - 1;
+		toggleFavorite( this.details );
 		this.details.isFavorite = !this.details.isFavorite;
 	    }
 	    catch( error ) {

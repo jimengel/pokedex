@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8">
 
+    <meta name=’viewport’ content=’width=device-width, initial-scale=1.0′>
+    
     <title>Pokedex</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
@@ -25,8 +27,8 @@
     <div id="mainapp">
 	<center><img src="images/header-md.png"></center><hr>
 	<poke-header :results="this.results" :types="this.types" ></poke-header>
-	<poke-grid   :results="this.results" :type_value="this.typeValue" :the_search="this.theSearch" v-show="showIt === 'GRID'">></poke-grid>
-	<poke-list   :results="this.results" v-show="showIt === 'LIST'">></poke-list>
+	<poke-grid   :results="this.results" :pageresults="this.pageResults" :count="this.count" :type_value="this.typeValue" :the_search="this.theSearch" v-show="showIt === 'LIST' || showIt === 'GRID'" ></poke-grid>
+	<!--    <poke-list   :results="this.results" :pageresults="this.pageResults" :count="this.count" v-show="showIt === 'LIST'">></poke-list> -->
 	<poke-details :details="this.details" :results="this.results" v-show="showIt === 'DETAILS'">></poke-details>
     </div>
 </body>
@@ -34,7 +36,6 @@
 
 </html>
 <script type="text/javascript" src="pokeDetails.js"></script>
-<script type="text/javascript" src="pokeList.js"></script>
 <script type="text/javascript" src="pokeGrid.js"></script>
 <script type="text/javascript" src="pokeHeader.js"></script>
 <script type="text/javascript" src="pokemon.js"></script>
